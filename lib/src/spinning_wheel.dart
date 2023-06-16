@@ -229,7 +229,7 @@ class _SpinningWheelState extends State<SpinningWheel> with SingleTickerProvider
   // transforms from global coordinates to local and store the value
   void _updateLocalPosition(Offset position) {
     if (_renderBox == null) {
-      _renderBox = context.findRenderObject() as RenderBox;
+      _renderBox = context.findRenderObject() as RenderBox?;
     }
     _localPositionOnPanUpdate = _renderBox?.globalToLocal(position);
   }
@@ -249,7 +249,7 @@ class _SpinningWheelState extends State<SpinningWheel> with SingleTickerProvider
     }
     // calculate current divider selected
     var modulo = _motion.modulo(_currentDistance + (_initialSpinAngle ?? 0));
-    _currentDivider = (widget.dividers - (modulo ~/ (_dividerAngle ?? 0))).toInt();
+    _currentDivider = (widget.dividers - (modulo ~/ (_dividerAngle ?? 0))) as int?;
     if (_animationController.isCompleted) {
       _initialSpinAngle = modulo;
       _currentDistance = 0;
